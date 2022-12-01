@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+
+<head>
+</head>
+
+<body>
+<div style="width:100px; margin-top:50px">
+<button id="contagemjs" onclick="Contagem()">Contagem (js)</button>
+<button style="margin-top:5px" onclick="Fibonacci()">Fibonacci (js)</button>
+<button style="margin-top:5px" onclick="MDC()">MDC (js)</button>
+<button style="margin-top:5px" onclick="Primo()">Numero primo (js)</button>
+<button style="margin-top:5px" onclick="Somatorio()">Somatorio (js)</button>
+<button style="margin-top:5px" onclick="QuickSort()">Quicksort (js)</button>
+</div>
+</body>
+
+<script>
+function Contagem() {
+quantInts = 0
+num = prompt('Digite numeros para saber quantos inteiros ha entre esses numeros').split(' ')
+for(i=0;i<num.length;i++) {
+if(!(num[i].includes('.') || num[i].includes(','))) quantInts++
+}
+alert(quantInts)
+}
+function fibonacci(quantidadeDeNumeros) {
+let numero1 = 0;
+let numero2 = 1;
+let numeroMínimo = 2;
+let somaFinal;
+
+if(quantidadeDeNumeros<=0) {
+    return []
+} else if(quantidadeDeNumeros==1) {
+    return[0];
+} else if(quantidadeDeNumeros==2) {
+    return[0, 1];
+}
+resultadoFinal = [0, 1];
+
+while(numeroMínimo<quantidadeDeNumeros) {
+    numeroMínimo++;
+    somaFinal = numero1+numero2;
+    numero1=numero2;
+    numero2=somaFinal;
+    resultadoFinal.push(somaFinal)    
+}
+return resultadoFinal;
+}
+module.exports = fibonacci; 
+
+function MDC() {
+let mdc
+num = prompt('Digite dois numeros pra saber seu MDC').split(' ')
+for (i = 0; i < num.length; i++) {
+num[i] = parseInt(num[i])
+}
+a = num[0]
+b = num[1]
+
+if (a < b) {
+c = a
+a = b
+b = c
+}
+
+for (i = 1; i < a; i++) {
+if (a % i == 0 && b % i == 0) {
+mdc = i;
+}
+}
+
+alert(mdc)
+}
+function Primo() {
+primo = true
+function ePrimo(num) {
+for(i=2;i<num;i++){
+if(num%i==0) {
+primo = false
+break
+}
+}
+if(primo) {
+alert('E primo')
+}
+else {
+alert('Nao e primo')
+}
+}
+
+var numero = prompt('Digite um numero para saber se ele e primo')
+ePrimo(numero)
+}
+function Somatorio() {
+numeros = []
+somatorio = 0
+var input = prompt('Digite numeros a serem somados')
+numeros = input.split(' ')
+for (i = 0; i < numeros.length; i++) numeros[i] = parseInt(numeros[i])
+for (i = 0; i < numeros.length; i++) somatorio = somatorio + numeros[i]
+alert('Somatorio = ' + somatorio)
+
+}
+function QuickSort() {
+function qs(vet) {
+quickSort(vet, 0, vet.length - 1);
+}
+
+function quickSort(vet, ini, fim) {
+var i = ini;
+var f = fim;
+var m = Math.floor((i + f) / 2);
+
+while (i < f) {
+while (vet[i] < vet[m])
+i++;
+
+while (vet[f] > vet[m])
+f--;
+
+if (i <= f) {
+var temp = vet[i];
+vet[i] = vet[f];
+vet[f] = temp;
+i++;
+f--;
+}
+}
+
+if (f > ini)
+quickSort(vet, ini, f);
+
+if (i < fim)
+quickSort(vet, i, fim);
+}
+
+arr = [2, 5, 3, 4, 11, 9]
+alert('array antes do quicksort -> ' + arr)
+qs(arr)
+alert('array depois do quicksort -> ' + arr)
+}
+</script>
+
+</html>
